@@ -31,8 +31,8 @@ function [f,g] = softmax_regression_vec(theta, X, y)
 y_hat = exp(theta' * X); % (K - 1) * m
 y_hat = [y_hat; ones(1, size(y_hat, 2))]; % K * m
 
-y_hat_sum = sum(y_hat, 2); % K * 1
-y_hat_sum(end, :) = 1; % K * 1
+y_hat_sum = sum(y_hat, 1); % 1 * m
+%y_hat_sum(end, :) = 1; % K * 1
 p_y = bsxfun(@rdivide, y_hat, y_hat_sum); % K * m
 A = log(p_y); % K * m
 index = sub2ind(size(y_hat), y, 1 : size(y_hat, 2));
